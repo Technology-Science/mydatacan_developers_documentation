@@ -1,0 +1,35 @@
+{
+    "auth": {
+        "plugins": {
+            "awsCognitoAuthPlugin": {
+                "IdentityManager": {
+                    "Default": {}
+                },
+                "CognitoUserPool": {
+                    "Default": {
+                        "PoolId": "// PUT COGNITO USER POOL ID HERE //",
+                        "AppClientId": "// PUT YOUR APP CLIENT ID HERE  //",
+                        "AppClientSecret": "// PUT YOUR APP CLIENT SECRET HERE //",
+                        "Region": "// PUT YOUR COGNITO USER POOL REGION HERE //"
+                    }
+                },
+                "Auth": {
+                    "Default": {
+                        "OAuth": {
+                            "WebDomain": "// PUT YOUR COGNITO DOMAIN HERE //",
+                            "AppClientId": "// PUT YOUR APP CLIENT ID HERE //",
+                            "AppClientSecret": "// PUT YOUR APP CLIENT SECRET HERE //",
+                            "SignInRedirectURI": "// PUT YOUR CALLBACK URL HERE //",
+                            "SignOutRedirectURI": "// PUT YOUR SIGN OUT URL HERE //",
+                            "Scopes": [
+                                "// PUT YOUR SCOPES HERE //"
+                            ]
+                        },
+                        "authenticationFlowType": "USER_SRP_AUTH"
+                    }
+                }
+            }
+        }
+    }
+}
+
