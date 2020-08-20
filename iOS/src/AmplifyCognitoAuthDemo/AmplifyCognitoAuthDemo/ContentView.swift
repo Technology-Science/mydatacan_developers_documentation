@@ -9,8 +9,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var auth = AuthService()
+    
+    init() {
+        auth.checkSessionStatus()
+        auth.observeAuthEvents()
+    }
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            if auth.isSignedIn {
+                SessionView()
+                    .environmentObject(auth)
+            } else {
+                SignInView()
+                    .environmentObject(auth)
+            }
+        }
     }
 }
 
