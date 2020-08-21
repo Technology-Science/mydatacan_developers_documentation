@@ -1,0 +1,48 @@
+{
+  "api": {
+    "plugins": {
+      "awsAPIPlugin": {
+        "app-test-api": {
+          "endpointType": "REST",
+          "endpoint": "",
+          "region": "us-east-1",
+          "authorizationType": "AMAZON_COGNITO_USER_POOLS"
+        }
+      }
+    }
+  },
+  "auth": {
+    "plugins": {
+      "awsCognitoAuthPlugin": {
+        "IdentityManager": {
+          "Default": {}
+        },
+        "CognitoUserPool": {
+          "Default": {
+            "PoolId": "",
+            "AppClientId": "",
+            "AppClientSecret": "",
+            "Region": "us-east-1"
+          }
+        },
+        "Auth": {
+          "Default": {
+            "OAuth": {
+              "WebDomain": "",
+              "AppClientId": "",
+              "AppClientSecret": "",
+              "SignInRedirectURI": "myapp://",
+              "SignOutRedirectURI": "myapp://",
+              "Scopes": [
+                "email",
+                "openid",
+                "profile"
+              ]
+            },
+            "authenticationFlowType": "USER_SRP_AUTH"
+          }
+        }
+      }
+    }
+  }
+}
