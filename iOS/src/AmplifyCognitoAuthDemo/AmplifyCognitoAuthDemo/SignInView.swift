@@ -12,13 +12,19 @@ struct SignInView: View {
     @EnvironmentObject var auth: AuthService
     
     var body: some View {
-        Button("Sign In") {
-            self.auth.webSignIn()
+        VStack {
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .padding()
+            Button("Sign In") {
+                self.auth.webSignIn()
+            }
+            .padding()
+            .background(Color(red: 0.0, green: 0.82, blue: 0.70, opacity: 1.0))
+            .foregroundColor(.white)
+            .cornerRadius(10)
         }
-        .padding()
-        .background(Color.blue)
-        .foregroundColor(.white)
-        .cornerRadius(10)
     }
 }
 

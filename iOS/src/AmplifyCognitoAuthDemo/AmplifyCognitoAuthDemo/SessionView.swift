@@ -13,16 +13,19 @@ struct SessionView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            Text("You are signed in as \(self.auth.getLoggedInUser()?.username ?? "user")")
-            Spacer()
-            Button("Sign Out") {
-                self.auth.signOut()
-            }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
+            Text("Hi!")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding()
+            Text("Your username is  \(self.auth.getLoggedInUser()?.username ?? "user")")
+                .padding()
+                Button("Sign Out") {
+                    self.auth.signOut()
+                }
+                .padding()
+                .background(Color(red: 0.0, green: 0.82, blue: 0.70, opacity: 1.0))
+                .foregroundColor(.white)
+                .cornerRadius(10)
         }
     }
 }
