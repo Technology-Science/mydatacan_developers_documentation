@@ -8,4 +8,5 @@ target 'AmplifyCognitoAuthDemo' do
   # Pods for AmplifyCognitoAuthDemo
   pod 'Amplify'
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
+  pod 'JWTDecode', '~> 2.4'
 end

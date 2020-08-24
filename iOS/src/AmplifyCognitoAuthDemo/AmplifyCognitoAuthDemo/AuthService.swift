@@ -9,9 +9,11 @@
 import Foundation
 import Amplify
 import AWSPluginsCore
+import JWTDecode
 
 class AuthService: ObservableObject {
     @Published var isSignedIn = false
+    @Published var tokens: [String:String]?
     
     func checkSessionStatus() {
         _ = Amplify.Auth.fetchAuthSession{ [weak self] result in
@@ -85,12 +87,20 @@ class AuthService: ObservableObject {
         do {
             if let cognitoTokenProvider = session as? AuthCognitoTokensProvider {
                 let tokens = try cognitoTokenProvider.getCognitoTokens().get()
-                print("Id token - \(tokens.idToken) ")
-                print("Access token - \(tokens.accessToken) ")
-                print("Refresh token - \(tokens.refreshToken) ")
+                self.tokens = ["idToken": tokens.idToken, "accessToken": tokens.accessToken, "refreshToken": tokens.refreshToken]
             }
         } catch {
             print("Error fetching tokens")
         }
+    }
+    
+    func getClaim(name: String) -> String? {
+        do {
+            let jwt = try decode(jwt: (self.tokens?["idToken"])!)
+            return jwt.claim(name: name).string
+        } catch {
+            print("Error getting claim")
+        }
+        return ""
     }
 }

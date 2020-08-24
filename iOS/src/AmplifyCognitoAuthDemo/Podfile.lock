@@ -21,10 +21,12 @@ PODS:
     - Amplify (= 1.1.1)
     - AWSCore (~> 2.15.0)
     - AWSMobileClient (~> 2.15.0)
+  - JWTDecode (2.4.1)
 
 DEPENDENCIES:
   - Amplify
   - AmplifyPlugins/AWSCognitoAuthPlugin
+  - JWTDecode (~> 2.4)
 
 SPEC REPOS:
   trunk:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - AWSCore
     - AWSMobileClient
     - AWSPluginsCore
+    - JWTDecode
 
 SPEC CHECKSUMS:
   Amplify: e23b610dde2539d67ec29843c7f01010b44b98ba
@@ -46,7 +49,8 @@ SPEC CHECKSUMS:
   AWSCore: 7dec5eefb9b95739adec68dcb3dba2a6770376a6
   AWSMobileClient: 23aa8e4a787553742861ea1e3272420a9aaf4938
   AWSPluginsCore: 4e98e284fff7763470ef94f7538449f20d891f70
+  JWTDecode: 4bd4da0cdf0f8154fd467fa48499f34ec057fb88
 
-PODFILE CHECKSUM: 41a79b54f32865129ec79dfa38a5e2e727b65ff2
+PODFILE CHECKSUM: c7cf171c4b8feb8ad8dd03fd62f2213702b94f3a
 
 COCOAPODS: 1.9.3
