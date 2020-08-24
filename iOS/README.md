@@ -1,5 +1,7 @@
 # Incorporating MyDataCan into an iOS app
 
+![Demo GIF](demo.gif)
+
 This guide is for iOS developers who want to incorporate [MyDataCan](https://harvard.mydatacan.org) and have users log in through [HarvardKey](https://key.harvard.edu).
 
 ## Resources
