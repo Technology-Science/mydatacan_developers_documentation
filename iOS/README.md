@@ -111,6 +111,36 @@ The URL schemes for the sign-in and sign-out URLs must be added to `Info.plist`.
 
 The "myapp" value must be consistent with the values for `SignInRedirectURI` and `SignOutRedirectURI` in `amplifyconfiguration.json`. If the values for `SignInRedirectURI` and `SignOutRedirectURI` are "myapp://", then "myapp" (without the "://") is what needs to be on `Info.plist`. Also, these URL schemes must be consistent with the ones defined in the Amazon Cognito settings in the AWS Console (check with the MyDataCan team).
 
+### Call the necessary methods for web sign-in and fetching session data
+
+The first step before calling methods for web sign-in and fetching session data is initializing Amplify on app startup. In the demo app, this is done in the [`AppDelegate`](src/AmplifyCognitoAuthDemo/AmplifyCognitoAuthDemo/AppDelegate.swift#L14) class in the first [`application`](src/AmplifyCognitoAuthDemo/AmplifyCognitoAuthDemo/AppDelegate.swift#L18) function like so:
+
+```swift
+import UIKit
+import Amplify
+import AmplifyPlugins
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    do {
+      try Amplify.add(plugin: AWSCognitoAuthPlugin())
+      try Amplify.configure()
+      print("Amplify configured with auth plugin")
+    } catch {
+      print("Failed to initialize Amplify with \(error)")
+    }
+    
+    return true
+  }
+
+  // ...
+}
+```
+
+The [`AuthService`](src/AmplifyCognitoAuthDemo/AmplifyCognitoAuthDemo/AuthService.swift#L14) class makes use of the different methods Amplify provides for signing in and getting the different tokens from the session data upon success. The demo app is meant to be an example of how these methods are used. It is up to the app developer to incorporate them into their own app.
+
 ## Resources
 
 * [AWS Amplify Authentication Flow for iOS SwiftUI](https://www.youtube.com/watch?v=wSHnmtnzbfs). _YouTube_.
