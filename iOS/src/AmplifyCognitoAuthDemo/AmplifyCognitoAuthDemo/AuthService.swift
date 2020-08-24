@@ -8,6 +8,7 @@
 
 import Foundation
 import Amplify
+import AWSPluginsCore
 
 class AuthService: ObservableObject {
     @Published var isSignedIn = false
@@ -16,8 +17,8 @@ class AuthService: ObservableObject {
         _ = Amplify.Auth.fetchAuthSession{ [weak self] result in
             switch result {
             case .success(let session):
-                print(session)
                 DispatchQueue.main.async {
+                    self?.getTokens(session: session)
                     self?.isSignedIn = session.isSignedIn
                 }
                 
@@ -78,5 +79,18 @@ class AuthService: ObservableObject {
     
     func getLoggedInUser() -> AuthUser? {
         return Amplify.Auth.getCurrentUser()
+    }
+    
+    func getTokens(session: AuthSession) {
+        do {
+            if let cognitoTokenProvider = session as? AuthCognitoTokensProvider {
+                let tokens = try cognitoTokenProvider.getCognitoTokens().get()
+                print("Id token - \(tokens.idToken) ")
+                print("Access token - \(tokens.accessToken) ")
+                print("Refresh token - \(tokens.refreshToken) ")
+            }
+        } catch {
+            print("Error fetching tokens")
+        }
     }
 }
