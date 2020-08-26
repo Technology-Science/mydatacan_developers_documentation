@@ -10,12 +10,12 @@ import Amplify from 'aws-amplify';
 /* Configure Amplify resources */
 Amplify.configure({
   Auth: {
-    region: 'us-east-1',
-    userPoolId: 'us-east-1_pgy5ckrBj',
-    userPoolWebClientId: '4dtqt1uhbvq2ui3om26poftpsk',
+    region: '',
+    userPoolId: '',
+    userPoolWebClientId: '',
     authenticationFlowType: 'USER_SRP_AUTH',
     oauth: {
-      domain: 'auth.mydatacan.org',
+      domain: '',
       scope: ['email', 'profile', 'openid'],
       redirectSignIn: 'http://localhost:4200',
       redirectSignOut: 'http://localhost:4200',
