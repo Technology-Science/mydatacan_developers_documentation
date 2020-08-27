@@ -1,8 +1,8 @@
-# Integrating MyDataCan to an iOS app
+# Integrating MyDataCan in an iOS app
 
 ![Demo GIF](demo.gif)
 
-This guide is for iOS developers who want to integrate [MyDataCan](https://harvard.mydatacan.org) to their app and have users log in using their [HarvardKey](https://key.harvard.edu) credentials.
+This guide is for iOS developers who want to integrate [MyDataCan](https://harvard.mydatacan.org) in their app and have users log in using their [HarvardKey](https://key.harvard.edu) credentials.
 
 MyDataCan uses [Amazon Cognito](https://aws.amazon.com/cognito/) for authentication and this guide shows how to use the [AWS Amplify](https://aws.amazon.com/amplify/) libraries for iOS to handle web sign-in with Cognito.
 
