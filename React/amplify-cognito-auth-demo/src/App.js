@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import Amplify, {Auth, Hub} from 'aws-amplify';
 import './App.css';
+import {Button, Image} from 'react-bootstrap'
+import logo from './logo.png'
 
 Amplify.configure({
     Auth: {
@@ -17,7 +19,6 @@ Amplify.configure({
         }
     }
 })
-
 
 function App() {
     const [user, setUser] = useState(null);
@@ -49,13 +50,24 @@ function App() {
     }
 
     return (
-        <div>
-            <p>User: {user ? JSON.stringify(user.username) : 'None'}</p>
-            {user ? (
-                <button onClick={() => Auth.signOut()}>Sign Out</button>
-            ) : (
-                <button onClick={() => Auth.federatedSignIn()}>Federated Sign In</button>
-            )}
+        <div className={"vertical-center"}>
+            <div className={"container text-center"}>
+                {user ? (
+                    <Fragment>
+                        <h1>Hi {user.signInUserSession.idToken.payload.name}!</h1>
+                        <p>Your full name
+                            is {user.signInUserSession.idToken.payload.name} {user.signInUserSession.idToken.payload.family_name}</p>
+                        <p>Your email address is {user.signInUserSession.idToken.payload.email}</p>
+                        <Button variant={"primary"} onClick={() => Auth.signOut()}>Sign Out</Button>
+                    </Fragment>
+                ) : (
+                    <Fragment>
+                        <Image src={logo} alt={"MyDataCan logo"} width={"300px"} fluid/>
+                        <br/>
+                        <Button variant={"primary"} onClick={() => Auth.federatedSignIn()}>Sign In</Button>
+                    </Fragment>
+                )}
+            </div>
         </div>
     );
 }
