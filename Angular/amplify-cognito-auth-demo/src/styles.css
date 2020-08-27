@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.btn-primary {
+  background-color: #00d1b2 !important;
+  border-color: #00d1b2 !important;
+}

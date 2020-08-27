@@ -1,8 +1,17 @@
-<div *ngIf="!isLoggedIn">
-  <button (click)="webSignIn()">Sign-In</button>
-</div>
+<div class="vertical-center">
+  <div class="container text-center">
+    <div *ngIf="!isLoggedIn">
+      <img src="assets/logo.png" width="300px" class="img-fluid">
+      <br/>
+      <button class="btn btn-primary" (click)="webSignIn()">Sign In</button>
+    </div>
 
-<div *ngIf="isLoggedIn">
-  <h2>Logged in</h2>
-  <button (click)="signOut()">Sign-Out</button>
+    <div *ngIf="isLoggedIn">
+      <h1>Hi {{user.name}}!</h1>
+      <p>Your full name
+        is {{user.name}} {{user.familyName}}</p>
+      <p>Your email address is {{user.email}}</p>
+      <button class="btn btn-primary" (click)="signOut()">Sign Out</button>
+    </div>
+  </div>
 </div>

@@ -10,7 +10,7 @@ import {AuthService} from './auth.service';
 export class AppComponent implements OnInit {
   title = 'amplify-cognito-auth-demo';
   isLoggedIn = false;
-  user: { id: string; username: string; email: string };
+  user: { id: string; username: string; email: string, name: string, familyName: string };
 
   constructor(private authService: AuthService) {
   }
@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
       isLoggedIn => (this.isLoggedIn = isLoggedIn)
     );
 
-    this.authService.auth$.subscribe(({id, username, email}) => {
-      this.user = {id, username, email};
+    this.authService.auth$.subscribe(({id, username, email, name, familyName}) => {
+      this.user = {id, username, email, name, familyName};
     });
   }
 

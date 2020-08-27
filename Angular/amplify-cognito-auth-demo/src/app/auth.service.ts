@@ -9,13 +9,17 @@ export interface AuthState {
   username: string | null;
   id: string | null;
   email: string | null;
+  name: string | null;
+  familyName: string | null;
 }
 
 const initialAuthState = {
   isLoggedIn: false,
   username: null,
   id: null,
-  email: null
+  email: null,
+  name: null,
+  familyName: null,
 };
 
 @Injectable({
@@ -61,7 +65,9 @@ export class AuthService {
     const id = user.signInUserSession.idToken.payload.sub;
     const username = user.username;
     const email = user.signInUserSession.idToken.payload.email;
+    const name = user.signInUserSession.idToken.payload.name;
+    const familyName = user.signInUserSession.idToken.payload.family_name;
 
-    this._authState.next({isLoggedIn: true, id, username, email});
+    this._authState.next({isLoggedIn: true, id, username, email, name, familyName});
   }
 }
