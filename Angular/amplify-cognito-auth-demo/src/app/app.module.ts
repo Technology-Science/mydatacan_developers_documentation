@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 /* Add Amplify imports */
 import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
+import {AuthService} from './auth.service';
 
 /* Configure Amplify resources */
 Amplify.configure({
@@ -35,4 +36,7 @@ Amplify.configure({
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(_auth: AuthService) {
+    console.log('starting AppModule');
+  }
 }

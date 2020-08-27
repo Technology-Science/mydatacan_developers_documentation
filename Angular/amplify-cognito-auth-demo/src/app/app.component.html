@@ -1,3 +1,8 @@
-<div>
+<div *ngIf="!isLoggedIn">
   <button (click)="webSignIn()">Sign-In</button>
+</div>
+
+<div *ngIf="isLoggedIn">
+  <h2>Logged in</h2>
+  <button (click)="signOut()">Sign-Out</button>
 </div>

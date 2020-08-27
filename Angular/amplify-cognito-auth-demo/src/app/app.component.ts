@@ -1,43 +1,35 @@
-import {Component} from '@angular/core';
-import {Auth, Hub} from 'aws-amplify';
+import {Component, OnInit} from '@angular/core';
+import {Auth} from 'aws-amplify';
+import {AuthService} from './auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'amplify-cognito-auth-demo';
+  isLoggedIn = false;
+  user: { id: string; username: string; email: string };
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
-  ngOnInit() {
-    Hub.listen('auth', ({payload: {event, data}}) => {
-      switch (event) {
-        case 'signIn':
-        case 'cognitoHostedUI':
-          Auth.currentAuthenticatedUser().then((userData) => {
-            console.log(userData);
-          }).catch((error) => {
-            console.error(error.message);
-          });
-          break;
-        case 'signOut':
-          break;
-        case 'signIn_failure':
-        case 'cognitoHostedUI_failure':
-          console.error('Sign in failure', data);
-          break;
-      }
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe(
+      isLoggedIn => (this.isLoggedIn = isLoggedIn)
+    );
+
+    this.authService.auth$.subscribe(({id, username, email}) => {
+      this.user = {id, username, email};
     });
   }
 
-  webSignIn() {
+  webSignIn(): void {
     Auth.federatedSignIn();
   }
 
-  signOut() {
+  signOut(): void {
     Auth.signOut();
   }
 }
